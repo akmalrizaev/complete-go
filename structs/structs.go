@@ -13,11 +13,7 @@ func main() {
 
 	var appUser *user.User
 
-	appUser = &user.User{
-		FirstName: "Max",
-	}
-
-	// appUser, err := newUser(userFirstName, userLastName, userBirthdate)
+	appUser, err := user.New(userFirstName, userLastName, userBirthdate)
 
 	if err != nil {
 		fmt.Println(err)
@@ -28,9 +24,9 @@ func main() {
 
 	// outputUserDetails(&appUser)
 
-	appUser.outputUserDetails()
-	appUser.clearUserName()
-	appUser.outputUserDetails()
+	appUser.OutputUserDetails()
+	appUser.ClearUserName()
+	appUser.OutputUserDetails()
 }
 
 func getUserData(promptText string) string {
