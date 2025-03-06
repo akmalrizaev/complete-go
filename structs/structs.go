@@ -17,6 +17,12 @@ func (u user) outputUserDetails() {
 
 }
 
+func (u *user) clearUserName() {
+	u.firstName = ""
+	u.lastName = ""
+
+}
+
 func main() {
 	userFirstName := getUserData("Please enter your first name: ")
 	userLastName := getUserData("Please enter your last name: ")
@@ -35,6 +41,8 @@ func main() {
 
 	// outputUserDetails(&appUser)
 
+	appUser.outputUserDetails()
+	appUser.clearUserName()
 	appUser.outputUserDetails()
 }
 
