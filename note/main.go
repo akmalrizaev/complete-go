@@ -1,12 +1,15 @@
 package main
 
 import (
-	"errors"
 	"fmt"
+
+	"example.com/note/notes"
 )
 
 func main() {
-	title, content, err := getNoteData()
+	title, content := getNoteData()
+
+	userNote, err := notes.New(title, content)
 
 	if err != nil {
 		fmt.Println(err)
@@ -15,30 +18,19 @@ func main() {
 
 }
 
-func getNoteData() (string, string, error) {
-	title, err := getUserInput("Note title:")
-	if err != nil {
+func getNoteData() (string, string) {
+	title := getUserInput("Note title:")
 
-		return "", "", err
-	}
+	content := getUserInput(("Note content:"))
 
-	content, err := getUserInput(("Note content:"))
-	if err != nil {
-
-		return "", "", err
-	}
-
-	return title, content, nil
+	return title, content
 
 }
 
-func getUserInput(prompt string) (string, error) {
+func getUserInput(prompt string) string {
 	fmt.Print(prompt)
 	var value string
 	fmt.Scanln(&value)
-	if value == "" {
-		return "", errors.New("invalid input")
-	}
 
-	return value, nil
+	return value
 }
