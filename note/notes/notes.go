@@ -1,6 +1,7 @@
 package notes
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
 	"os"
@@ -19,11 +20,17 @@ func (note Notes) Display() {
 
 }
 
-func (note Notes) Save() {
+func (note Notes) Save() error {
 	fileName := strings.ReplaceAll(note.title, " ", "_")
 	fileName = strings.ToLower(fileName)
 
-	os.WriteFile(fileName)
+	json, err := json.Marshal(note)
+
+	if err != nil {
+		return err
+	}
+
+	return os.WriteFile(fileName, json, 0644)
 }
 
 func New(title, content string) (Notes, error) {
