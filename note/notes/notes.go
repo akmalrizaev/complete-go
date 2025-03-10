@@ -10,19 +10,19 @@ import (
 )
 
 type Notes struct {
-	title     string
-	content   string
-	createdAt time.Time
+	Title     string
+	Content   string
+	CreatedAt time.Time
 }
 
 func (note Notes) Display() {
-	fmt.Printf("Your note titled %v has the following content\n\n%v\n\n", note.title, note.content)
+	fmt.Printf("Your note titled %v has the following content\n\n%v\n\n", note.Title, note.Content)
 
 }
 
 func (note Notes) Save() error {
-	fileName := strings.ReplaceAll(note.title, " ", "_")
-	fileName = strings.ToLower(fileName)
+	fileName := strings.ReplaceAll(note.Title, " ", "_")
+	fileName = strings.ToLower(fileName) + ".json"
 
 	json, err := json.Marshal(note)
 
@@ -40,9 +40,9 @@ func New(title, content string) (Notes, error) {
 	}
 
 	return Notes{
-		title:     title,
-		content:   content,
-		createdAt: time.Now(),
+		Title:     title,
+		Content:   content,
+		CreatedAt: time.Now(),
 	}, nil
 
 }
