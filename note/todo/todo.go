@@ -12,7 +12,7 @@ type Todo struct {
 }
 
 func (todo Todo) Display() {
-	fmt.Printf(todo.Text)
+	fmt.Printf("%v", todo.Text)
 
 }
 
